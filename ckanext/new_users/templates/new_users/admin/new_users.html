@@ -1,0 +1,38 @@
+{% extends "admin/base.html" %}
+
+{% block primary_content_inner %}
+<ul class="user-list" id="new-user-list">
+  {% for user in new_users %}
+  <li>
+    <form action="{{ h.url_for('new_users.assign_user') }}" method="POST" class="single-row-form"
+      id="assign-org-form-{{ user }}">
+      <div class="srf-user">{{ h.linked_user(user) }}</div>
+      <input type="hidden" id="{{ user }}" name="user" value="{{ user }}">
+      <select id="org-{{ user }}" name="org">
+        <option value="" disabled selected>Select an organization</option>
+        {% for org in orgs %}
+        <option value={{ org.name }}>{{ org.title }}</option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Assign to org">
+    </form>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
+
+{% block secondary_content %}
+<div class="module module-narrow module-shallow">
+  <h2 class="module-heading">
+    <i class="fa fa-info-circle"></i>
+    {{ _('Manage new users') }}
+  </h2>
+  <div class="module-content">
+    <p>
+      {% trans %}
+      View a list of new users and assign them to organizations.
+      {% endtrans %}
+    </p>
+  </div>
+</div>
+{% endblock %}

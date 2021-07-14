@@ -1,0 +1,14 @@
+# new_users-js:
+#   filter: rjsmin
+#   output: ckanext-new_users/%(version)s-new_users.js
+#   contents:
+#     - js/new_users.js
+#   extra:
+#     preload:
+#       - base/main
+
+# new_users-css:
+#   filter: cssrewrite
+#   output: ckanext-new_users/%(version)s-new_users.css
+#   contents:
+#     - css/new_users.css
